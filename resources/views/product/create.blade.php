@@ -31,16 +31,11 @@
                     <x-input-label for="category" :value="__('Category')" />
                     <select class="form-select" id="category" name="category">
                         <option selected="" disabled="" value="">...</option>
-                        <option>
-
                             @forelse ($catagories as $catagory)
                             <option><p>{{ $catagory->name }} </p></option>
-
                             @empty
                                 <p> </p>
                             @endforelse
-
-                        </option>
                     </select>  
                     <x-input-error :messages="$errors->get('category')" class="mt-2" />
                 </div>

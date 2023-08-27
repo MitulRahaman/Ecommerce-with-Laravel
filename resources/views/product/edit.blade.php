@@ -28,16 +28,11 @@
                         <select class="form-select border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 
                                 rounded-md shadow-sm w-full" id="category" name="category">
                             <option value="{{ $product->category }}">{{ $product->category }}</option>
-                            <option>
-
                                 @forelse ($catagories as $catagory)
                                 <option><p>{{ $catagory->name }} </p></option>
-
                                 @empty
                                     <p> </p>
                                 @endforelse
-
-                            </option>
                         </select>  
                         <x-input-error :messages="$errors->get('category')" class="mt-2" />
                     </div>

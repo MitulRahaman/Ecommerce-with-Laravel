@@ -37,7 +37,7 @@
                                 </tr>
                             </tbody>
                             @empty
-                            <p>You don't have any support product yet. </p>
+                            <p> </p>
                             @endforelse
                         </table>
                 </div>
