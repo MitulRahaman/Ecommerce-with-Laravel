@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\facades\Storage;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -15,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::latest()->get();
         return view('product.index', compact('products'));
     }
 
@@ -24,7 +25,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $catagories = DB::select('select * from catagories');
+        return view('product.create', compact('catagories'));
     }
 
     /**
@@ -63,7 +65,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit', compact('product'));
+        $catagories = DB::select('select * from catagories');
+        return view('product.edit', compact(['product', 'catagories']));
     }
 
     /**

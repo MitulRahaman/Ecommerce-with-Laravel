@@ -25,9 +25,22 @@
 
                 <div class="mt-4">
                     <x-input-label for="category" :value="__('Category')" />
-                    <x-text-input id="category" class="block mt-1 w-full" type="text" name="category" value="{{ $product->category }}" autofocus />
-                    <x-input-error :messages="$errors->get('category')" class="mt-2" />
-                </div>
+                        <select class="form-select border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 
+                                rounded-md shadow-sm w-full" id="category" name="category">
+                            <option value="{{ $product->category }}">{{ $product->category }}</option>
+                            <option>
+
+                                @forelse ($catagories as $catagory)
+                                <option><p>{{ $catagory->name }} </p></option>
+
+                                @empty
+                                    <p> </p>
+                                @endforelse
+
+                            </option>
+                        </select>  
+                        <x-input-error :messages="$errors->get('category')" class="mt-2" />
+                    </div>
                 
                 <div class="mt-4">
                     <x-input-label for="photo" :value="__('Photo')" />
