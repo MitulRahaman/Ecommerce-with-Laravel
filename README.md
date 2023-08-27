@@ -4,16 +4,28 @@
 
 ## Project Summary:
 
+- Authenticate user can update name, email and password
+- User can delete the account
 - User can create, update, delete any product from the system.
+- User can create, update, delete any category from the system.
 - User can give code, name, price and category for the product.
+- catagory can be selected from another table called catagory.
 - User can upload image for the product.
 
 ## Table Information
 
-1. Product Attributes: 
+1. User Attribute:
+    - Name (string) {required}
+    - Email (string) {required}
+    - Password (password) {required}
+
+2. Product Attributes: 
     - Code (number) {required}
     - Name (string) {required}
     - Price (number) {required}
     - Category (text) {required}
     - Photo (string) {required}
-    - user_id {required}
+    - user_id {required. foreign key} 
+
+3. Category Attributes: 
+    - Name (string) {required}
