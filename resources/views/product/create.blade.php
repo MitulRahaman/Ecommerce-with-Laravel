@@ -29,7 +29,7 @@
 
                 <div class="mt-4">
                     <x-input-label for="category" :value="__('Category')" />
-                    <select class="form-select" id="category" name="category">
+                    <select class="form-select" id="category" name="category[]" multiple>
                         <option selected="" disabled="" value="">...</option>
                             @forelse ($catagories as $catagory)
                             <option><p>{{ $catagory->name }} </p></option>

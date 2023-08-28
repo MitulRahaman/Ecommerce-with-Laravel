@@ -26,13 +26,21 @@
                 <div class="mt-4">
                     <x-input-label for="category" :value="__('Category')" />
                         <select class="form-select border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 
-                                rounded-md shadow-sm w-full" id="category" name="category">
-                            <option value="{{ $product->category }}">{{ $product->category }}</option>
-                                @forelse ($catagories as $catagory)
-                                <option><p>{{ $catagory->name }} </p></option>
-                                @empty
-                                    <p> </p>
-                                @endforelse
+                            rounded-md shadow-sm w-full" id="category" name="category[]" multiple>
+                            <option value=
+                                "@foreach($product->category as $p)
+                                {{ $p }} ,
+                                @endforeach" disabled>
+                                @foreach($product->category as $p)
+                                {{ $p }} ,
+                                @endforeach
+                            
+                            </option>
+                            @forelse ($catagories as $catagory)
+                            <option><p>{{ $catagory->name }} </p></option>
+                            @empty
+                                <p> </p>
+                            @endforelse
                         </select>  
                         <x-input-error :messages="$errors->get('category')" class="mt-2" />
                     </div>

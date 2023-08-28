@@ -11,6 +11,7 @@
 - User can give code, name, price and category for the product.
 - catagory can be selected from another table called catagory.
 - User can upload image for the product.
+- User can add multiple catagory for a single product
 
 ## Table Information
 
@@ -23,7 +24,7 @@
     - Code (number) {required}
     - Name (string) {required}
     - Price (number) {required}
-    - Category (text) {required}
+    - Category (array) {required}
     - Photo (string) {required}
     - user_id {required. foreign key} 
 

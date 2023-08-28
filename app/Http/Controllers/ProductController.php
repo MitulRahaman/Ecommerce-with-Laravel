@@ -17,7 +17,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->get();
-        return view('product.index', compact('products'));
+        $catagories = DB::select('select * from catagories');
+
+        return view('product.index', compact('products', 'catagories'));
     }
 
     /**
@@ -40,11 +42,20 @@ class ProductController extends Controller
         $path = "products/$filename.$ext";
         Storage::disk('public')->put($path, $contents);
 
+        $cat = [];
+        foreach ($request->category as $x){ 
+            $id = DB::table('catagories')
+             ->select('id')
+             ->where('name', $x)
+             ->pluck('id');
+             array_push($cat,$id);
+        }
+
         $product = Product::create([
             'code' => $request->code,
             'name' => $request->name,
             'price' => $request->price,
-            'category' => $request->category,
+            'category' => $cat,
             'photo' => "$path",
             'user_id' => auth()->id()
         ]);
