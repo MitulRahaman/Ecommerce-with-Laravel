@@ -85,7 +85,23 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->except('photo'));
+        $product->update($request->except('photo', 'category'));
+
+
+        if($request->category)
+        {   
+            $cat = [];
+            foreach ($request->category as $x)
+            { 
+                $id = DB::table('catagories')
+                ->select('id')
+                ->where('name', $x)
+                ->pluck('id');
+                array_push($cat,$id);
+            }
+            $product->update(['category'=> $cat]);
+        }
+
 
         if($request->file('photo'))
         {

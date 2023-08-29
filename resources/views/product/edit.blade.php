@@ -27,13 +27,17 @@
                     <x-input-label for="category" :value="__('Category')" />
                         <select class="form-select border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 
                             rounded-md shadow-sm w-full" id="category" name="category[]" multiple>
-                            <option value=
-                                "@foreach($product->category as $p)
-                                {{ $p }} ,
-                                @endforeach" disabled>
-                                @foreach($product->category as $p)
-                                {{ $p }} ,
-                                @endforeach
+                            <option selected disabled>
+                                <?php
+                                        foreach ($product->category as $x){ 
+                                            $name = collect(DB::table('catagories')
+                                                    ->select('name')
+                                                    ->where('id', $x)
+                                                    ->pluck('name'));
+                                            echo trim($name, '[""]');
+                                            echo (", ");
+                                        }
+                                ?>
                             
                             </option>
                             @forelse ($catagories as $catagory)
