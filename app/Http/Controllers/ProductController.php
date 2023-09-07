@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Cart;
+use App\Models\Catagory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\facades\Storage;
@@ -16,19 +18,31 @@ class ProductController extends Controller
      */
     public function index()
     {
+        
         $products = Product::latest()->get();
         $catagories = DB::select('select * from catagories');
-
         return view('product.index', compact('products', 'catagories'));
     }
+
+    public function index1($id)
+    {
+        $products = DB::table('products')->where('category', 'like', '%' .$id. '%')->get();
+        $catagories = DB::select('select * from catagories');
+        return view('product.index', compact('products', 'catagories'));
+    }
+        
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $catagories = DB::select('select * from catagories');
-        return view('product.create', compact('catagories'));
+        if(auth()->user()->isAdmin)
+        {
+            $catagories = DB::select('select * from catagories');
+            return view('product.create', compact('catagories'));
+        }
+        
     }
 
     /**
@@ -76,8 +90,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $catagories = DB::select('select * from catagories');
-        return view('product.edit', compact(['product', 'catagories']));
+        if(auth()->user()->isAdmin)
+        {
+            $catagories = DB::select('select * from catagories');
+            return view('product.edit', compact(['product', 'catagories']));
+        }
+        
     }
 
     /**
@@ -102,7 +120,6 @@ class ProductController extends Controller
             $product->update(['category'=> $cat]);
         }
 
-
         if($request->file('photo'))
         {
             Storage::disk('public')->delete($product->photo);
@@ -121,7 +138,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
-        return redirect(route('product.index'));
+        if(auth()->user()->isAdmin)
+        {
+            $product->delete();
+            return redirect(route('product.index'));
+        }
+        
     }
 }

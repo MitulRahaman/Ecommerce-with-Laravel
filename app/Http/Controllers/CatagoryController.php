@@ -13,8 +13,12 @@ class CatagoryController extends Controller
      */
     public function index()
     {
-        $catagories = Catagory::all();
-        return view('catagory.index', compact('catagories'));
+        if(auth()->user()->isAdmin)
+        {
+            $catagories = Catagory::all();
+            return view('catagory.index', compact('catagories'));
+        }
+        
     }
 
     /**
@@ -22,7 +26,10 @@ class CatagoryController extends Controller
      */
     public function create()
     {
-        return view('catagory.create');
+        if(auth()->user()->isAdmin)
+        {
+            return view('catagory.create');
+        }
     }
 
     /**
@@ -30,10 +37,13 @@ class CatagoryController extends Controller
      */
     public function store(StoreCatagoryRequest $request)
     {
-        $catagory = Catagory::create([
-            'name' => $request->name
-        ]);
-        return redirect(route('catagory.index'));
+        if(auth()->user()->isAdmin)
+        {
+            $catagory = Catagory::create([
+                'name' => $request->name
+            ]);
+            return redirect(route('catagory.index'));
+        }
     }
 
     /**
@@ -41,7 +51,11 @@ class CatagoryController extends Controller
      */
     public function show(Catagory $catagory)
     {
-        return view('catagory.show', compact('catagory'));
+        if(auth()->user()->isAdmin)
+        {
+            return view('catagory.show', compact('catagory'));
+        }
+        
     }
 
     /**
@@ -49,7 +63,11 @@ class CatagoryController extends Controller
      */
     public function edit(Catagory $catagory)
     {
-        return view('catagory.edit', compact('catagory'));
+        if(auth()->user()->isAdmin)
+        {
+            return view('catagory.edit', compact('catagory'));
+        }
+        
     }
 
     /**
@@ -57,8 +75,11 @@ class CatagoryController extends Controller
      */
     public function update(UpdateCatagoryRequest $request, Catagory $catagory)
     {
-        $catagory->update($request->validated());
-        return redirect(route('catagory.index'));
+        if(auth()->user()->isAdmin)
+        {
+            $catagory->update($request->validated());
+            return redirect(route('catagory.index'));
+        }
     }
 
     /**
@@ -66,7 +87,10 @@ class CatagoryController extends Controller
      */
     public function destroy(Catagory $catagory)
     {
-        $catagory->delete();
-        return redirect(route('catagory.index'));
+        if(auth()->user()->isAdmin)
+        {
+            $catagory->delete();
+            return redirect(route('catagory.index'));
+        }
     }
 }
