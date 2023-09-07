@@ -39,16 +39,16 @@
                         <hr class="mb-4 mt-0 d-inline-block mx-auto"
                             style="width: 60px; background-color: #7c4dff; height: 2px" />
                         <p>
-                            <a href="#!" class="text-dark">Our Main Goal</a>
+                            <a href="/footer/goals" class="text-dark">Our Main Goal</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-dark">Services Being Provided</a>
+                            <a href="/navigation/emi" class="text-dark">EMI</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-dark">Top-Selling Brands</a>
+                            <a href="/footer/shipping" class="text-dark">Shipping Rates</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-dark">Customer Satisfaction</a>
+                            <a href="/navigation/privacy_policy" class="text-dark">Privacy Policy</a>
                         </p>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -56,16 +56,16 @@
                         <hr class="mb-4 mt-0 d-inline-block mx-auto"
                             style="width: 60px; background-color: #7c4dff; height: 2px" />
                         <p>
-                            <a href="#!" class="text-dark">Your Account</a>
+                            <a href="{{route('profile.edit')}}" class="text-dark">Your Account</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-dark">Terms and Conditions</a>
+                            <a href="/footer/terms" class="text-dark">Terms and Conditions</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-dark">Shipping Rates</a>
+                            <a href="/navigation/refund" class="text-dark">Refund Policy</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-dark">Help</a>
+                            <a href="/footer/warranty" class="text-dark">Warranty</a>
                         </p>
                     </div>
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">

@@ -53,6 +53,18 @@ Route::middleware('auth')->group(function () {
             return view('navigation.order_status');
     });
 
+    Route::get('/footer/{name?}', function ($name){
+        if($name == 'warranty')
+            return view('footer.warranty');
+        if($name == 'terms')
+            return view('footer.terms');
+        if($name == 'shipping')
+            return view('footer.shipping');
+        if($name == 'goals')
+            return view('footer.goals');
+        
+    });
+
     Route::post('/addcart/{id}', [OrderController::class, 'addcart'])->name('order.addcart');
     Route::get('/showcart', [OrderController::class, 'showcart'])->name('order.showcart');
     Route::get('/deleteCart/{id}', [OrderController::class, 'deleteCart'])->name('order.deleteCart');
