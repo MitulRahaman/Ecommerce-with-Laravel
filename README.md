@@ -18,6 +18,8 @@
 - Products can be filtered by category
 - Admin can manage other admin users
 
+***use admin@gmail.com for registration to get full access
+
 ## Table Information
 
 1. Users Attribute:
