@@ -24,34 +24,34 @@
 
 1. Users Attribute:
     - name (string) {required}
-    - email (string) {required}
+    - email (string) {required} {unique}
     - password (password) {required}
 
 2. Products Attributes: 
-    - code (number) {required}
+    - code (number) {required}{unique}
     - name (string) {required}
     - price (number) {required}
-    - category (array) {required}
+    - category (array) {foreign key} {required}
     - photo (string) {required}
-    - user_id {required. foreign key} 
+    - user_id {required, foreign key} 
 
 3. Admins Attributes: 
     - name (string) {required}
-    - email (string) {required}
+    - email (string) {required}{unique}
 
 4. Carts Attributes: 
     - name (string) {required}
-    - email (string) {required}
+    - email (string) {foreign key} {required} {unique}
     - productTitle (string) {required}
     - productQuantity (number) {required}
     - totalPrice (number) {required}
 
 5. Categories Attributes: 
-    - Name (string) {required}
+    - Name (string) {required} {unique}
 
 6. Orders Attributes: 
     - orderedProduct (string) {required}
     - totalPrice (number) {required}
     - status (string) {required}
-    - user_id (string) {required}
-    - user_email (string) {required}
+    - user_id {required, foreign key} 
+    - user_email (string) {required} {unique}
