@@ -94,13 +94,16 @@ class OrderController extends Controller
     {
         $title = DB::table('products')->where('id', $id)->first();
 
-        $cart = Cart::create([
-            'name' => auth()->user()->name,
-            'email' => auth()->user()->email,
-            'product_title' => $title->name,
-            'product_quantity' => $request->quantity,
-            'product_price' => "$title->price",
-        ]);
+        $cart = Cart::updateOrCreate(
+            [
+                'name' => auth()->user()->name,
+                'email' => auth()->user()->email,
+                'product_title' => $title->name,
+            ],
+            [
+                'product_quantity' => $request->quantity,
+                'product_price' => "$title->price",
+            ]);
 
         return redirect()->back()->with('message', 'added to cart successfully');
     }

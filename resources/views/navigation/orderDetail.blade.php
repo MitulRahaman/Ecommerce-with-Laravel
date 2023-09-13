@@ -11,6 +11,7 @@
                     <div>
                         <p><strong>Name:</strong> {{ $order->orderedProduct }} </p>
                         <p><strong>Price:</strong> {{ $order->totalPrice }} </p>
+                        <p><strong>Ordered By:</strong> {{ $order->user_email }} </p>
                     </div>
                     
                     <p>{{ $order->created_at->diffForHumans() }} </p>
